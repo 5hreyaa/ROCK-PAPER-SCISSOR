@@ -2,17 +2,15 @@ from tkinter import *
 from PIL import Image, ImageTk
 from random import randint
 
-# Function to resize images
 def resize_image(image, width, height):
     return image.resize((width, height), Image.Resampling.LANCZOS)
 
-# Initialize the main window
 root = Tk()
 root.title("Rock Scissors Paper")
 root.geometry("600x500")
 root.configure(bg="#2c3e50")
 
-# Load and resize images
+
 rock_img = resize_image(Image.open("rock.png"), 100, 100)
 paper_img = resize_image(Image.open("paper.png"), 100, 100)
 scissor_img = resize_image(Image.open("scissor.png"), 100, 100)
@@ -21,7 +19,7 @@ rock_img_comp = resize_image(Image.open("rock.png"), 100, 100)
 paper_img_comp = resize_image(Image.open("paper.png"), 100, 100)
 scissor_img_comp = resize_image(Image.open("scissor.png"), 100, 100)
 
-# Convert to Tkinter compatible format
+
 rock_img = ImageTk.PhotoImage(rock_img)
 paper_img = ImageTk.PhotoImage(paper_img)
 scissor_img = ImageTk.PhotoImage(scissor_img)
@@ -29,7 +27,7 @@ rock_img_comp = ImageTk.PhotoImage(rock_img_comp)
 paper_img_comp = ImageTk.PhotoImage(paper_img_comp)
 scissor_img_comp = ImageTk.PhotoImage(scissor_img_comp)
 
-# Player and computer labels
+
 user_label = Label(root, image=scissor_img, bg="#2c3e50")
 comp_label = Label(root, image=scissor_img_comp, bg="#2c3e50")
 user_label.grid(row=1, column=3, padx=10, pady=10)
@@ -51,11 +49,10 @@ comp_indicator.grid(row=0, column=1, pady=10)
 msg = Label(root, text="", font=("Helvetica", 16), bg="#2c3e50", fg="white")
 msg.grid(row=2, column=2)
 
-# Round Display
+
 round_label = Label(root, text="Round: 1 / 5", font=("Helvetica", 14), bg="#2c3e50", fg="white")
 round_label.grid(row=3, column=2)
 
-# Global variables
 round_num = 1
 max_rounds = 5
 
@@ -86,7 +83,7 @@ def checkWin(player, comp):
         updateMessage("You Lose!")
         updateCompScore()
 
-    # Update round
+    
     round_num += 1
     if round_num <= max_rounds:
         round_label.config(text=f"Round: {round_num} / {max_rounds}")
@@ -126,7 +123,7 @@ def updateChoice(x):
 
     checkWin(x, compChoice)
 
-# Choices and Buttons
+
 choices = ["rock", "paper", "scissor"]
 
 rock = Button(root, text="ROCK", font=("Helvetica", 14), bg="#e74c3c", fg="white", command=lambda: updateChoice("rock"))
@@ -137,5 +134,5 @@ rock.grid(row=4, column=1, pady=20)
 paper.grid(row=4, column=2, pady=20)
 scissor.grid(row=4, column=3, pady=20)
 
-# Start the main loop
+
 root.mainloop()
